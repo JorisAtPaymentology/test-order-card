@@ -1,0 +1,71 @@
+{
+  "card-orders": [
+    {
+      "id": "1",
+      "numberOfCards": 10,
+      "totalPrice": 180,
+      "name": "John",
+      "idNumber": "123456789",
+      "contactNumber": "+32 487 78 98 93",
+      "altContactNumber": "+32 487 11 11 11",
+      "address": "Baker Street 221B",
+      "city": "London",
+      "code": "123456789",
+      "reference": "8802404304"
+    },
+    {
+      "numberOfCards": "3",
+      "totalPrice": 54,
+      "name": "Joris",
+      "idNumber": "123",
+      "contactNumber": "+32484399406",
+      "altContactNumber": "",
+      "address": "Achterbroeksteenweg 88",
+      "city": "Kalmthout",
+      "code": "123",
+      "id": "f2kVPvt",
+      "reference": "8802404305"
+    },
+    {
+      "numberOfCards": 0,
+      "totalPrice": 0,
+      "name": "",
+      "idNumber": "",
+      "contactNumber": "",
+      "altContactNumber": "",
+      "address": "",
+      "city": "",
+      "code": "",
+      "id": "Th0ve3c"
+    },
+    {
+      "numberOfCards": 0,
+      "totalPrice": 0,
+      "name": "",
+      "idNumber": "",
+      "contactNumber": "",
+      "altContactNumber": "",
+      "address": "",
+      "city": "",
+      "code": "",
+      "id": "k87o6cu"
+    }
+  ],
+  "cardPrice": [
+    {
+      "id": 1,
+      "cardType": "PayCard",
+      "price": 18,
+      "currency": "R",
+      "unitPrice": 0,
+      "deliveryFee": 106
+    }
+  ],
+  "balance": [
+    {
+      "id": 1,
+      "balance": 18000,
+      "currency": "R"
+    }
+  ]
+}
