@@ -157,7 +157,7 @@ export default function CardOrderForm() {
       !codeError
     ) {
       const cardOrder = {
-        // TODO add reference number
+        reference:  "8802404305",
         numberOfCards: numberOfCards,
         totalPrice: cardPrice.price * numberOfCards,
         name,
