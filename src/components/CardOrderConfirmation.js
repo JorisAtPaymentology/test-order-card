@@ -8,7 +8,7 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 
@@ -25,6 +25,7 @@ const style = {
 };
 
 export default function CardOrderConfirmation() {
+  const { id } = useParams();
   const history = useHistory();
   const [balance, setBalance] = useState({});
   const [cardOrder, setCardOrder] = useState({});
@@ -40,7 +41,7 @@ export default function CardOrderConfirmation() {
       .then((res) => res.json())
       .then((data) => setCardPrice(data));
 
-    fetch("http://localhost:8000/card-orders/f2kVPvt")
+    fetch("http://localhost:8000/card-orders/" + id)
       .then((res) => res.json())
       .then((data) => setCardOrder(data));
 
@@ -58,7 +59,7 @@ export default function CardOrderConfirmation() {
   };
 
   const handleModalConfirmation = () => {
-    history.push("/order-invoice");
+    history.push("/order-invoice/" + id);
   };
 
   return (

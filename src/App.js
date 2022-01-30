@@ -10,10 +10,10 @@ function App() {
         <Route exact path="/">
           <CardOrderForm />
         </Route>
-        <Route exact path="/order-confirmation">
+        <Route exact path="/order-confirmation/:id">
           <CardOrderConfirmation />
         </Route>
-        <Route exact path="/order-invoice">
+        <Route exact path="/order-invoice/:id">
           <CardOrderInvoice />
         </Route>
       </Switch>
