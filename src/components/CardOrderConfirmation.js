@@ -27,7 +27,7 @@ const style = {
 export default function CardOrderConfirmation() {
   const { id } = useParams();
   const history = useHistory();
-  const [balance, setBalance] = useState({});
+  const [user, setUser] = useState({});
   const [cardOrder, setCardOrder] = useState({});
   const [cardPrice, setCardPrice] = useState({});
 
@@ -45,20 +45,20 @@ export default function CardOrderConfirmation() {
       .then((res) => res.json())
       .then((data) => setCardOrder(data));
 
-    fetch("http://localhost:8000/balance/1")
+    fetch("http://localhost:8000/users/1")
       .then((res) => res.json())
-      .then((data) => setBalance(data));
+      .then((data) => setUser(data));
   }, []);
 
   const handleGoBack = () => {
     history.push("/");
   };
 
-  const handleConfirmation = () => {
+  const handleInsufConfirmation = () => {
     handleOpen();
   };
 
-  const handleModalConfirmation = () => {
+  const handleConfirmation = () => {
     history.push("/order-invoice/" + id);
   };
 
@@ -71,15 +71,13 @@ export default function CardOrderConfirmation() {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          {balance && (
+          {user && (
             <Typography variant="h5" component="h3">
-              Your balance is currently {balance.currency}
-              {balance.balance}. You have{" "}
-              {balance.balance > cardOrder.totalPrice
-                ? "sufficient"
-                : "insufficient"}{" "}
-              funds.<br></br> Your card order will be processed once sufficient
-              funds have been added.
+              Your balance is currently {user.currency}
+              {user.balance}. You have{" "}
+              {user.balance > cardOrder.totalPrice
+                ? "sufficient funds."
+                : "insufficient funds. Your card order will be processed once sufficient funds have been added."}
             </Typography>
           )}
         </Grid>
@@ -134,11 +132,15 @@ export default function CardOrderConfirmation() {
                   </TableRow>
                   <TableRow>
                     <TableCell>Delivery method</TableCell>
-                    <TableCell>NOT DEFINED IN QUESTIONNAIRE</TableCell>
+                    <TableCell>{cardOrder.selectedDeliveryMethod}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>Address</TableCell>
                     <TableCell>{cardOrder.address}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>Address line 2</TableCell>
+                    <TableCell>{cardOrder.addressLine2}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>City</TableCell>
@@ -160,7 +162,9 @@ export default function CardOrderConfirmation() {
           <Button
             variant="contained"
             margin="normal"
-            onClick={handleConfirmation}
+            onClick={user.balance > cardOrder.totalPrice
+              ? handleConfirmation
+              : handleInsufConfirmation }
           >
             Confirm
           </Button>
@@ -185,7 +189,7 @@ export default function CardOrderConfirmation() {
               <Button
                 variant="contained"
                 margin="normal"
-                onClick={handleModalConfirmation}
+                onClick={handleConfirmation}
               >
                 Confirm
               </Button>
